@@ -4,7 +4,7 @@ import "./additional.css"
 export const App = () => {
   const [state, setState] = React.useState(0)
   const btnClick = () => {
-    setState(prev => prev + 2)
+    setState(prev => prev + 1)
     // throw new Error()
   }
   return <div>

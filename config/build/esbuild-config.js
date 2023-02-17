@@ -17,4 +17,5 @@ ESBuild.build({
   entryNames: "bundle",
   bundle: true,
   minify: isProd,
+  sourcemap: isDev,
 })

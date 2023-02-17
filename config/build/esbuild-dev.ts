@@ -1,11 +1,11 @@
-const ESBuild = require("esbuild")
-const config = require("./esbuild-config.js")
+import ESBuild from "esbuild"
+import config from "./esbuild-config"
 
 const PORT = process.env.PORT || 3000;
 
 ESBuild.serve({
   servedir: config.outdir,
-  port: PORT,
+  port: +PORT,
 }, { ...config})
 .then(() => console.log(`app started on http://localhost:${PORT} port`))
 .catch(err => console.log("ERROR ==> Some error has occured...", err))

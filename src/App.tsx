@@ -2,7 +2,7 @@ import React from "react";
 import "./additional.css"
 
 export const App = () => {
-  const [state, setState] = React.useState(0)
+  const [state, setState] = React.useState<number>(0)
   const btnClick = () => {
     setState(prev => prev + 1)
     // throw new Error()

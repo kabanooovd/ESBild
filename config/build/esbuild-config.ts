@@ -17,6 +17,11 @@ const config: BuildOptions = {
   entryNames: "bundle",
   bundle: true,
   tsconfig: Utils.resolveRoot("tsconfig.json"),
+  loader: {
+    ".jpg": "file",
+    ".png": "file",
+    ".svg": "file",
+  },
   minify: isProd,
   sourcemap: isDev,
 }

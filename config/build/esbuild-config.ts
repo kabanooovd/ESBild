@@ -1,5 +1,6 @@
 import { BuildOptions } from "esbuild";
 import Utils from "../helper";
+import cleaner from "./plugins/cleaner";
 
 const MODES = {
   dev: "development",
@@ -14,7 +15,8 @@ const isProd = mode === MODES.prod;
 const config: BuildOptions = {
   outdir: Utils.resolveRoot("dist"),
   entryPoints: [Utils.resolveRoot("src", "index.tsx")],
-  entryNames: "bundle",
+  entryNames: "[dir]/bundle.[name]-[hash]",
+  allowOverwrite: true,
   bundle: true,
   tsconfig: Utils.resolveRoot("tsconfig.json"),
   loader: {
@@ -24,6 +26,7 @@ const config: BuildOptions = {
   },
   minify: isProd,
   sourcemap: isDev,
+  plugins: [cleaner],
 }
 
 export default config

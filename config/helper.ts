@@ -26,11 +26,20 @@ export class Utils {
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>${options.title}</title>
-        ${options?.cssPath?.map((path: string) => `<link rek="stylesheet" href=${path}>`).join(" ")}
+        ${options?.cssPath?.map((path: string) => `<link rel="stylesheet" href=${path}>`).join(" ")}
       </head>
       <body>
         <div id="root"></div>
         ${options?.jsPath?.map((path: string) => `<script src=${path}></script>`).join(" ")}
+        <script>
+          const eventSource = new EventSource("http://localhost:3000/subscribe");
+          eventSource.onopen = function () { console.log("open") };
+          eventSource.onerror = function () { console.log("error") };
+          eventSource.onmessage = function () { 
+            console.log("refresh");
+            window.location.reload();
+          }
+        </script>
       </body>
     </html>
     `

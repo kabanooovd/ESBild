@@ -31,19 +31,9 @@ const config: BuildOptions = {
   plugins: [
     cleaner, 
     HTMLPlugin({
-      title: "ESBuild",
-      jsPath: [], // 56:32
+      title: "ESBuild template",
     })
   ],
-  watch: isDev && {
-    onRebuild(err, result) {
-      if (!err) {
-        console.log("Error ", err)
-      } else {
-        console.log("Build...")
-      }
-    }
-  }
 }
 
 export default config

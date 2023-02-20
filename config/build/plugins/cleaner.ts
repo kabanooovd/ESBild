@@ -1,7 +1,7 @@
 import * as esbuild from 'esbuild';
 import { rm } from "fs/promises";
 
-let cleaner: esbuild.Plugin = {
+const cleaner: esbuild.Plugin = {
   name: 'cleaner',
   setup(build) {
     build.onStart( async () => {

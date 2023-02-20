@@ -1,6 +1,7 @@
 import { BuildOptions } from "esbuild";
-import Utils from "../helper";
+import { Utils } from "../helper";
 import cleaner from "./plugins/cleaner";
+import HTMLPlugin from "./plugins/HTMLPlugin";
 
 const MODES = {
   dev: "development",
@@ -19,6 +20,7 @@ const config: BuildOptions = {
   allowOverwrite: true,
   bundle: true,
   tsconfig: Utils.resolveRoot("tsconfig.json"),
+  metafile: true,
   loader: {
     ".jpg": "file",
     ".png": "file",
@@ -26,7 +28,22 @@ const config: BuildOptions = {
   },
   minify: isProd,
   sourcemap: isDev,
-  plugins: [cleaner],
+  plugins: [
+    cleaner, 
+    HTMLPlugin({
+      title: "ESBuild",
+      jsPath: [], // 56:32
+    })
+  ],
+  watch: isDev && {
+    onRebuild(err, result) {
+      if (!err) {
+        console.log("Error ", err)
+      } else {
+        console.log("Build...")
+      }
+    }
+  }
 }
 
 export default config

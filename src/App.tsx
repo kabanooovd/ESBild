@@ -5,7 +5,7 @@ import photo from "./assets/images/photo.jpg"
 export const App = () => {
   const [state, setState] = React.useState<number>(0)
   const btnClick = () => {
-    setState(prev => prev + 1)
+    setState(prev => prev + 12)
     // throw new Error()
   }
   return <div>
